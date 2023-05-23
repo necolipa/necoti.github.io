@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>iletişim</title><link rel="shortcut icon" href="nekati.png" type="image/x-icon">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333333;
+        }
+
+        form {
+            background-color: #ffffff;
+            border-radius: 5px;
+            padding: 20px;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #cccccc;
+            border-radius: 3px;
+            font-size: 14px;
+        }
+
+        input[type="submit"] {
+            background-color: #08418c;
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 3px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>bize mail gönder</h1>
+    <a href="http://127.0.0.1:5500/necati.html">ana sayfa</a>
+    
+    <form action="mailto:oecatierenozen@gmail.com" method="post" enctype="text/plain">
+        <label for="Kimden">Kimden:</label>
+        <input type="text" id="from" name="from" required>
+        
+        <label for="Konu">Konu:</label>
+        <input type="text" id="subjact" name="subject" required>
+        
+        <label for="Mesaj">Mesaj:</label>
+        <textarea id="message" name="message" rows="5" cols="30" required></textarea>
+        
+        <input type="submit" value="Gönder">
+    </form>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>sinirbot </title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+        }
+        .chat-container {
+            max-width: 500px;
+            margin: 0 auto;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        .chat-header {
+            background-color: #00ffc8;
+            color: #fff;
+            padding: 15px;
+        }
+        .chat-header h1 {
+            margin: 0;
+        }
+        .chat-body {
+            padding: 15px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .message {
+            margin-bottom: 15px;
+        }
+        .user-message {
+            background-color: #e6e6ff;
+            padding: 10px;
+            border-radius: 8px;
+            text-align: right;
+        }
+        .bot-message {
+            background-color: #f2f2f2;
+            padding: 10px;
+            border-radius: 8px;
+        }
+        .user-input {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-top: 1px solid #ccc;
+            border-bottom-left-radius: 8px;
+            border-bottom-right-radius: 8px;
+            font-size: 14px;
+            outline: none;
+        }
+        .submit-button {
+            background-color: #00ff77;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-header">
+            <h1>sinirbot</h1>
+        </div>
+        <div class="chat-body" id="chatlog"></div>
+        <div class="user-input-container">
+            <input type="text" id="userInput" class="user-input" placeholder="Bir mesaj yazın..." />
+            <button onclick="sendMessage()" class="submit-button">Gönder</button>
+        </div>
+    </div>
+
+    <script>
+        const chatlog = document.getElementById("chatlog");
+        const userInput = document.getElementById("userInput");
+
+        function sendMessage() {
+            const userMessage = userInput.value;
+            if (userMessage.trim() !== "") {
+                addMessage(userMessage, "user");
+                userInput.value = "";
+                getBotResponse(userMessage);
+            }
+        }
+
+        function addMessage(message, sender) {
+            const messageContainer = document.createElement("div");
+            messageContainer.classList.add("message");
+
+            const messageElement = document.createElement("div");
+            messageElement.classList.add(sender + "-message");
+            messageElement.textContent = message;
+
+            messageContainer.appendChild(messageElement);
+            chatlog.appendChild(messageContainer);
+
+            chatlog.scrollTop = chatlog.scrollHeight; // Otomatik kaydırma
+        }
+
+        function getBotResponse(userMessage) {
+            addMessage("...", "bot"); // Bot yazıyor olarak işaretlemek için üç nokta ekleyebilirsiniz.
+
+            // Burada chatbot'un nasıl yanıt vereceğini belirleyen kodu ekleyebilirsiniz.
+            // Örneğin, API çağrısı veya yerel mantık kullanarak yanıtlar üretebilirsiniz.
+
+            // Örneğin, rastgele bir yanıt seçmek için aşağıdaki kodu kullanabilirsiniz:
+            const botResponses = ["bunu boşver başka konuya geç.", "onu bunu boş verde dünyanın yaşı sence kaç?", "Üzgünüm, anlamadım.", "aynen katılıyorum"];
+            const randomIndex = Math.floor(Math.random() * botResponses.length);
+            const botMessage = botResponses[randomIndex];
+
+            // Bot yanıtını ekrana ekleyin
+            setTimeout(() => {
+                addMessage(botMessage, "bot");
+            }, 1000); // Bot yanıtının görüntülenmesi için 1 saniye gecikme ekledik
+        }
+    </script>
+</body>
+</html>
+
