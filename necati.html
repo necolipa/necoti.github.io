@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>necolipa.com</title>
+    <link rel="shortcut icon" href="nekati.png" type="image/x-icon">
+    <style>
+        body {
+            background-color: #f5f5f5;
+            font-family: Arial, sans-serif;
+            color: #333;
+        }
+
+        header {
+            background-color: #00ff6a;
+            padding: 20px;
+            color: #fff;
+            text-align: center;
+        }
+
+        nav {
+            background-color: #f8f9fa;
+            padding: 10px;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        nav ul li {
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        nav ul li a {
+            color: #333;
+            text-decoration: none;
+            padding: 5px;
+            border-radius: 5px;
+        }
+
+        nav ul li a:hover {
+            background-color: #00ff4c;
+            color: #fff;
+        }
+
+        section {
+            background-color: #fff;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        footer {
+            background-color: #f8f9fa;
+            padding: 10px;
+            text-align: center;
+        }
+
+        /* Arama çubuğu stilleri */
+        .search-container {
+            text-align: right;
+            margin: 10px;
+        }
+
+        .search-container input[type="text"] {
+            padding: 5px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            width: 200px;
+        }
+
+        .search-container input[type="submit"] {
+            padding: 5px 10px;
+            border-radius: 5px;
+            background-color: #00ff6a;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        /* Diğer stiller */
+
+        #datetime {
+            text-align: right;
+            margin: 10px;
+            font-size: 18px;
+            color: #555;
+        }
+
+        #datetime span {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    
+
+    <header>
+        <h1>necolipa.com</h1>
+        <img src="nekati.png" alt="" width="30" height="30">
+
+
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#">Anasayfa</a></li>
+            <li><a href="iletisim.html">İletişim</a></li>
+            <li><a href="notlar.html">notlar</a></li>
+            <li><a href="içindekiler.html">içindekiler</a></li>
+            <li><a href="geri sayım.html">geri sayım</a></li>
+            <li><a href="qr.html">qr code oluşturma</a></li>
+        </ul>
+    </nav>
+
+    <div class="search-container">
+        <form action="#">
+            <input type="text" id="search-input" placeholder="sayfa ara...">
+            <input type="submit" value="Ara">
+        </form>
+    </div>
+
+    <section id="notlar">
+        <h2><a href="notlar.html">notlar</a></h2>
+        <p>burada pdf ler görseller kodlar vb var.</p>
+    </section>
+
+    <section id="içindekiler">
+        <h2><a href="içindekiler.html">içindekiler</a></h2>
+        <ul>
+            <li><a href="notlar.html">pdf</a></li>
+            <li><a href="notlar.html">görseller</a></li>
+            <li><a href="notlar.html">görseller</a></li>
+            <li><a href="geri sayım.html">geri sayım</a></li>
+            <li><a href="qr.html">qr code oluşturma </a></li>
+        </ul>
+    </section>
+
+    <section id="iletisim">
+        <h2><a href="iletişim.html">iletişim</a></h2>
+        
+        <ul>
+            <li><a href="iletisim.html">iletişim</a></li>
+            
+        </ul>
+    </section>
+
+    <footer>
+        <p>Telif Hakkı &copy; 2023 Tüm hakları saklıdır.</p>
+    </footer>
+
+    <div id="datetime"></div>
+
+    <script>
+        function updateDateTime() {
+            var currentDateTime = new Date();
+            var day = currentDateTime.toLocaleString('en-US', { day: 'numeric' });
+            var month = currentDateTime.toLocaleString('en-US', { month: 'long' });
+            var year = currentDateTime.toLocaleString('en-US', { year: 'numeric' });
+            var hour = currentDateTime.toLocaleString('en-US', { hour: 'numeric', hour12: true });
+            var minute = currentDateTime.toLocaleString('en-US', { minute: 'numeric' });
+            var ampm = currentDateTime.toLocaleString('en-US', { hour12: true }).split(' ')[1];
+
+            var datetimeElement = document.getElementById('datetime');
+            datetimeElement.innerHTML = '<span>' + day + ' ' + month + ' ' + year + '</span> ' + hour + ':' + minute + ' ' + ampm;
+        }
+
+        // İlk olarak tarih ve saat bilgisini güncelleyelim
+        updateDateTime();
+
+        // Her 1 saniyede bir tarih ve saat bilgisini güncelleyelim
+        setInterval(updateDateTime, 1000);
+
+        const form = document.querySelector('form');
+form.addEventListener('submit', function(event) {
+  event.preventDefault();
+  const searchInput = document.getElementById('search-input').value.toLowerCase();
+
+  if (searchInput === 'iletişim') {
+    window.location.href = 'iletisim.html';
+  } else if (searchInput === 'notlar') {
+    window.location.href = 'notlar.html';
+  } else if (searchInput === 'içindekiler') {
+    window.location.href = 'içindekiler.html';
+  } else if (searchInput === 'qr code') {
+    window.location.href = 'qr.html';
+  } else {
+    alert('Aradığınız sayfa bulunamadı.');
+  }
+});
+
+    
+    </script>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d48784.50376118982!2d29.933475344773957!3d40.1638526989266!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14cb8ff9d112b87f%3A0xbc0204b016c9231f!2sBilecik%2C%20Bilecik%20Merkez%2FBilecik!5e0!3m2!1str!2str!4v1684696665535!5m2!1str!2str" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+</body>
+</html>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tweet At</title>
+  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</head>
+<body>
+  <a class="twitter-share-button"
+    href="https://twitter.com/intent/tweet?text=selam dünya "
+    data-size="large">
+    Tweetle
+  </a>
+
+  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</body>
+</html>
+
+
+
+
